@@ -479,6 +479,21 @@ class _ChatState extends State<Chat> {
               ? min(constraints.maxWidth * 0.72, 440).floor()
               : min(constraints.maxWidth * 0.78, 440).floor();
 
+      if (message.type == types.MessageType.unsupported) {
+        return Container(
+          alignment: Alignment.center,
+          margin: widget.theme.dateDividerMargin.copyWith(top: 10, bottom: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Text(
+              message.metadata?['text'] ?? '',
+              style: widget.theme.dateDividerTextStyle,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
       return Message(
         key: ValueKey(message.id),
         avatarBuilder: widget.avatarBuilder,
