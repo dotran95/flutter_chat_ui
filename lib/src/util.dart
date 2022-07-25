@@ -57,6 +57,7 @@ String getVerboseDateTimeRepresentation(
   DateFormat? dateFormat,
   String? dateLocale,
   DateFormat? timeFormat,
+  required bool isDifferentDay
 }) {
   final formattedDate = dateFormat != null
       ? dateFormat.format(dateTime)
@@ -69,7 +70,7 @@ String getVerboseDateTimeRepresentation(
 
   if (localDateTime.day == now.day &&
       localDateTime.month == now.month &&
-      localDateTime.year == now.year) {
+      localDateTime.year == now.year && !isDifferentDay) {
     return formattedTime;
   }
 
@@ -179,6 +180,7 @@ List<Object> calculateChatMessages(
                   dateFormat: dateFormat,
                   dateLocale: dateLocale,
                   timeFormat: timeFormat,
+                  isDifferentDay: isFirst
                 ),
         ),
       );
@@ -216,6 +218,7 @@ List<Object> calculateChatMessages(
                   dateFormat: dateFormat,
                   dateLocale: dateLocale,
                   timeFormat: timeFormat,
+                  isDifferentDay: nextMessageDifferentDay
                 ),
         ),
       );
