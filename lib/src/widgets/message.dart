@@ -321,10 +321,16 @@ class Message extends StatelessWidget {
               : Container(
                   decoration: BoxDecoration(
                     borderRadius: borderRadius,
-                    color: !currentUserIsAuthor ||
-                            message.type == types.MessageType.image
-                        ? InheritedChatTheme.of(context).theme.secondaryColor
-                        : InheritedChatTheme.of(context).theme.primaryColor,
+                    color: message.type == types.MessageType.custom
+                        ? Colors.transparent
+                        : (!currentUserIsAuthor ||
+                                message.type == types.MessageType.image
+                            ? InheritedChatTheme.of(context)
+                                .theme
+                                .secondaryColor
+                            : InheritedChatTheme.of(context)
+                                .theme
+                                .primaryColor),
                   ),
                   child: ClipRRect(
                     borderRadius: borderRadius,
